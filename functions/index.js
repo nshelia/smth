@@ -12,6 +12,8 @@ app.use(cookieParser);
 app.post('/calculate-price', async (req, res) => {
   const model = req.body.mdeol;
   const companyId = req.body.companyId;
+
+  return 500;
 });
 
 exports.app = functions.https.onRequest(app);
