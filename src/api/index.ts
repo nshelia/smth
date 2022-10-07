@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { db } from '../utils/firebase';
 import { doc, getDoc, writeBatch } from 'firebase/firestore';
 import { User } from '../interfaces/index';
@@ -7,7 +9,6 @@ import {
 } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 import axios, { AxiosInstance } from 'axios';
-
 const isDev = process.env.NODE_ENV === 'development';
 const baseURL = isDev ? 'dev url' : 'produrl';
 
@@ -58,6 +59,16 @@ class FirebaseApi {
     // Firebase Database user entity creation for metadata
     await this.createUser(userId, data);
     return { userId };
+  };
+
+  fetchMain = async () => {
+    const { data } = await axios.get(
+      'https://api2.myauto.ge/ka/services/quick-main-data/all/get',
+    );
+    return JSON.parse(data.data.manufactors).map((item) => ({
+      value: item.man_id,
+      label: item.man_name,
+    }));
   };
 }
 
