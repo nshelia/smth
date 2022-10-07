@@ -4,19 +4,17 @@ import { getAuth } from "firebase/auth";
 import { getStorage, ref } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCASy1o1yXI4pYVUAA-1yn30xyzDqS5JAw",
-  authDomain: "test-mk1-48d35.firebaseapp.com",
-  projectId: "test-mk1-48d35",
-  storageBucket: "test-mk1-48d35.appspot.com",
-  messagingSenderId: "802245752773",
-  appId: "1:802245752773:web:c33c162b7ca215cb4a3dac"
+  apiKey: "AIzaSyBARbKoiif8qvZIJYfNDJQKjDQZ7OwwOpg",
+  authDomain: "hackproject-27248.firebaseapp.com",
+  projectId: "hackproject-27248",
+  storageBucket: "hackproject-27248.appspot.com",
+  messagingSenderId: "1083847045054",
+  appId: "1:1083847045054:web:3eb8759e75699eed6713ef",
+  measurementId: "G-S31NBXT9RX"
 };
-
 
 // Initialize Firebase
 export const app = firebase.initializeApp(firebaseConfig);
-
-
 
 export const storage = getStorage();
 

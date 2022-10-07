@@ -6,7 +6,7 @@ import {
   StorageReference,
   deleteObject,
 } from 'firebase/storage';
-import { userImagesRef } from '../../../utils/firebase';
+import { userImagesRef } from '../../utils/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
 function useImageUpload() {

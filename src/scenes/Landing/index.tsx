@@ -55,7 +55,8 @@ function Landing() {
   if (isLoading) {
     return null;
   }
-  const transformedModels = realModels.filter(item => item.manId === 1)
+
+  let transformedModels = realModels.filter(item => item.manId === parseInt(selectedMan))
 
   return (
     <main style={{ marginTop: '50px' }}>
@@ -136,7 +137,6 @@ function Landing() {
         ) : (
           <Dropzone
             onDrop={onSelectImage}
-            openRef={openRef}
             accept={IMAGE_MIME_TYPE}>
             {(status) => (
               <Group
@@ -145,7 +145,6 @@ function Landing() {
                 style={{ minHeight: 110, pointerEvents: 'none' }}>
                 <ImageUploadIcon
                   status={status}
-                  style={{ color: getIconColor(status, theme) }}
                   size={80}
                 />
 
