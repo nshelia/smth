@@ -8,8 +8,19 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+const isDev = process.env.NODE_ENV === 'development';
+
+
+const baseURL = isDev
+  ? 'http://localhost:5001/hackproject-27248/us-central1/app'
+  : 'https://greetle.app/api';
+
 
 class FirebaseApi {
+
+  apiClient: AxiosInstance = axios.create({
+    baseURL: baseURL
+  });
 
   createRequest = async (id, data: any) => {
     await setDoc(doc(db, "requests", id), data);
@@ -46,6 +57,22 @@ class FirebaseApi {
 
   revisionForPhotos = async (id, declinedData) => {
 
+  }
+
+  sendDocument = async (id, make) => {
+    return this.apiClient.post('/send-email', {
+      documentId: id,
+      make,
+    });
+  }
+
+  sendDeclineEmail = async (data) => {
+    return this.apiClient.post('/send-decline-email', data);
+  }
+
+
+  sendAcceptEmail = async (data) => {
+    return this.apiClient.post('/send-accept-email', data);
   }
 }
 

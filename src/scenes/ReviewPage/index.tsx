@@ -6,8 +6,8 @@ import {
     Button,
     Card,
     Text,
-    Group,
-    Badge,
+    NumberInput,
+    Textarea,
     Title
 } from '@mantine/core';
 import { useQuery, useMutation } from 'react-query';
@@ -17,29 +17,69 @@ import api from '../../api';
 import ImgsViewer from 'react-images-viewer'
 import { useState } from 'react';
 import CarDetailBox from './CarDetailBox';
+import { gradeToInfo } from '../../helpers/gradeToInfo'
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
+import {
+    Check
+} from 'tabler-icons-react';
 
 function InviteLink() {
     const { documentId } = useParams();
     const [open, setIsOpen] = useState(false)
     const [currImg, setCurrImg] = useState(NaN)
-    const { data, isLoading } = useQuery('inviteLink', () => {
+    const { data, isLoading } = useQuery('getRequest', () => {
         return api.getRequest(documentId || '');
     });
+    const form = useForm({
+        initialValues: {
+            comments: '',
+            finalPrice: 0
+        },
+
+        validate: {},
+    });
+
 
     const [acceptedImages, setAcceptedImages] = useState<string[]>([])
 
 
-    const mutation = useMutation(
+    const declineMutation = useMutation(
         () => {
-            return api.revisionForPhotos(
-                documentId,
+            return api.sendDeclineEmail(
                 {
-                    data: data.imageUrls.filter((item: string) => !acceptedImages.includes(item))
+                    email: data.email,
+                    comments: form.values.comments,
+                    make: data.make.label,
+                    declinedImages: data.imageUrls.filter((item: string) => !acceptedImages.includes(item))
                 }
             );
         },
         {
             onSuccess: () => {
+            },
+            onError: () => { },
+        },
+    );
+
+
+    const acceptMutation = useMutation(
+        () => {
+            return api.sendAcceptEmail(
+                {
+                    make: data.make.label,
+                    email: data.email,
+                    finalPrice: form.values.finalPrice,
+                }
+            );
+        },
+        {
+            onSuccess: () => {
+                showNotification({
+                    color: 'teal',
+                    icon: <Check />,
+                    message: 'Request has been finalized for client !',
+                });
             },
             onError: () => { },
         },
@@ -52,6 +92,9 @@ function InviteLink() {
             </Box>
         );
     }
+
+    const isReadyForFinalize = acceptedImages.length === data.imageUrls.length
+
     return (
         <Box sx={{ maxWidth: 600 }} mx="auto" mt="lg">
             <Paper shadow="xs" p="md">
@@ -79,6 +122,16 @@ function InviteLink() {
                     </Text>
                     {` ${data.year}`}
                 </CarDetailBox>
+                <CarDetailBox>
+                    <Text weight="bold" color="blue">
+                        {gradeToInfo[data.grade as any]}
+                    </Text>
+                </CarDetailBox>
+                <CarDetailBox>
+                    <Text weight="bold" color="green">
+                        ${data.priceRange.from} - ${data.priceRange.to}
+                    </Text>
+                </CarDetailBox>
                 <Title mb="lg">
                     {"Car photos"}
                 </Title>
@@ -99,7 +152,6 @@ function InviteLink() {
                                 </Card.Section>
 
                                 <Button variant="light" color={isAccepted ? "green" : "blue"} fullWidth mt="md" radius="md" onClick={() => {
-
                                     if (isAccepted) {
                                         const newData = acceptedImages.filter(url => url !== item)
                                         setAcceptedImages(newData)
@@ -127,8 +179,37 @@ function InviteLink() {
                     }}
                     onClose={() => setIsOpen(false)}
                 />
+                {!isReadyForFinalize && <Title mb="lg" mt="lg">
+                    {"Comments"}
+                </Title>}
+                {!isReadyForFinalize && <Textarea
+                    onChange={(e) => form.setFieldValue("comments", e.target.value)}
+                    value={form.values.comments}
+                    placeholder="Your comment"
+                    label="Your comment"
+                    withAsterisk
+                />}
+                <div className="mt-5 mb-5">
+                    {isReadyForFinalize && <NumberInput
+                        value={form.values.finalPrice}
+                        onChange={(data) => form.setFieldValue("finalPrice", data!)}
+                        label="Price"
+                        size="lg"
+                        description={"Please enter price range from " + `$${data.priceRange.from}` + ` to $${data.priceRange.to}`}
+                        defaultValue={1000}
+                        parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
+                        formatter={(value) =>
+                            !Number.isNaN(parseFloat(value!))
+                                ? `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                : '$ '
+                        }
+                    />}
+                </div>
+
                 <div className="mt-5 flex">
                     <Button
+                        onClick={() => acceptMutation.mutate()}
+                        loading={acceptMutation.isLoading}
                         disabled={acceptedImages.length !== data.imageUrls.length}
                         variant="gradient"
                         type="submit"
@@ -138,13 +219,14 @@ function InviteLink() {
                         {'Finalize'}
                     </Button>
                     <Button
-                        onClick={() => mutation.mutate()}
-                        loading={mutation.isLoading}
+                        disabled={isReadyForFinalize}
+                        onClick={() => declineMutation.mutate()}
+                        loading={declineMutation.isLoading}
                         variant="gradient"
                         type="submit"
                         fullWidth
                         gradient={{ from: 'indigo', to: 'cyan' }}>
-                        {'Revision'}
+                        {'Decline'}
                     </Button>
                 </div>
             </Paper>

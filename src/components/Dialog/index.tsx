@@ -40,7 +40,7 @@ export default function MyModal({ isOpen, onSubmit, data, onClose }: { isOpen: b
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-gray-500">
-                                            This is price range based on your input, if this acceptable we will finalize this with our expert.
+                                            This is price range based on your input, if this acceptable we will review this with our expert.
                                         </p>
                                     </div>
                                     {data && <Text color="teal" style={{ textAlign: "center", margin: "10px 0px", fontSize: "36px" }}>${data.from} - ${data.to}</Text>}
