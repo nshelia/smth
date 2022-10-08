@@ -1,0 +1,236 @@
+[debug] [2022-10-08T15:42:06.864Z] ----------------------------------------------------------------------
+[debug] [2022-10-08T15:42:06.865Z] Command:       /Users/niki/.nvm/versions/node/v16.17.1/bin/node /Users/niki/.nvm/versions/node/v16.17.1/bin/firebase emulators:start
+[debug] [2022-10-08T15:42:06.866Z] CLI Version:   11.14.1
+[debug] [2022-10-08T15:42:06.866Z] Platform:      darwin
+[debug] [2022-10-08T15:42:06.866Z] Node Version:  v16.17.1
+[debug] [2022-10-08T15:42:06.870Z] Time:          Sat Oct 08 2022 19:42:06 GMT+0400 (Georgia Standard Time)
+[debug] [2022-10-08T15:42:06.870Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-10-08T15:42:06.906Z] Field ".emulators.hosting.port" in "firebase.json" is possibly invalid: should be number
+[debug] [2022-10-08T15:42:06.908Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-10-08T15:42:06.909Z] > authorizing via signed-in user (nbregv@gmail.com)
+[info] i  emulators: Starting emulators: functions, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, hosting"}}
+[debug] [2022-10-08T15:42:06.919Z] [hub] writing locator at /var/folders/6y/dyrrb03562v018q6d8fq0r_r0000gn/T/hub-hackproject-27248.json
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, firestore, database, pubsub, storage, eventarc {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, firestore, database, pubsub, storage, eventarc\u001b[22m"}}
+[info] ✔  functions: Using node@16 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Using node@16 from host."}}
+[debug] [2022-10-08T15:42:06.936Z] defaultcredentials: writing to file /Users/niki/.config/firebase/nbregv_gmail_com_application_default_credentials.json
+[debug] [2022-10-08T15:42:06.937Z] Setting GAC to /Users/niki/.config/firebase/nbregv_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/niki/.config/firebase/nbregv_gmail_com_application_default_credentials.json"}}
+[debug] [2022-10-08T15:42:06.938Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/adminSdkConfig [none]
+[debug] [2022-10-08T15:42:07.445Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/adminSdkConfig 200
+[debug] [2022-10-08T15:42:07.446Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/adminSdkConfig {"projectId":"hackproject-27248","storageBucket":"hackproject-27248.appspot.com","locationId":"europe-west"}
+[warn] ⚠  hosting: Port 6000 is restricted by some web browsers, including Chrome. You may want to choose a different port such as 6001. {"metadata":{"emulator":{"name":"hosting"},"message":"Port 6000 is restricted by some web browsers, including Chrome. You may want to choose a different port such as 6001."}}
+[debug] [2022-10-08T15:42:07.496Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/hackproject-27248/sites 
+[debug] [2022-10-08T15:42:08.647Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/hackproject-27248/sites 200
+[debug] [2022-10-08T15:42:08.648Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/hackproject-27248/sites {"sites":[{"name":"projects/hackproject-27248/sites/hackproject-27248","defaultUrl":"https://hackproject-27248.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-10-08T15:42:08.648Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/webApps/-/config [none]
+[debug] [2022-10-08T15:42:09.493Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/webApps/-/config 200
+[debug] [2022-10-08T15:42:09.494Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hackproject-27248/webApps/-/config {"projectId":"hackproject-27248","appId":"1:1083847045054:web:3eb8759e75699eed6713ef","storageBucket":"hackproject-27248.appspot.com","locationId":"europe-west","apiKey":"AIzaSyBARbKoiif8qvZIJYfNDJQKjDQZ7OwwOpg","authDomain":"hackproject-27248.firebaseapp.com","messagingSenderId":"1083847045054","measurementId":"G-S31NBXT9RX"}
+[debug] [2022-10-08T15:42:09.518Z] Specified "public" directory "build" does not exist; Deploy to Hosting site "" may fail or be empty.
+[info] i  hosting: Serving hosting files from: build {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mbuild\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:6000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:6000\u001b[22m\u001b[24m"}}
+[debug] [2022-10-08T15:42:10.053Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-10-08T15:42:10.053Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-10-08T15:42:10.057Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[debug] [2022-10-08T15:42:10.110Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-10-08T15:42:10.111Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-10-08T15:42:10.111Z] Starting Emulator UI with command {"binary":"node","args":["/Users/niki/.cache/firebase/emulators/ui-v1.10.0/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/niki/.cache/firebase/emulators/ui-v1.10.0/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2022-10-08T15:42:10.182Z] Web / API server started at localhost:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at localhost:4000\n"}}
+[info] i  functions: Watching "/Users/niki/Desktop/smth/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/niki/Desktop/smth/functions\" for Cloud Functions..."}}
+[debug] [2022-10-08T15:42:10.384Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-10-08T15:42:11.066Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "firebase-functions": "^3.18.0",
+    "googleapis": "^108.0.0",
+    "handlebars": "^4.7.7",
+    "nodemailer": "^6.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-10-08T15:42:11.067Z] Building nodejs source
+[debug] [2022-10-08T15:42:11.067Z] Analyzing nodejs backend spec
+[warn] ⚠  functions: You are using an old version of firebase-functions SDK (3.18.0). Please update firebase-functions SDK to >=3.20.0 
+[info] ✔  functions: Loaded functions definitions from source: app. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: app."}}
+[info] ✔  functions[us-central1-app]: http function initialized (http://localhost:5001/hackproject-27248/us-central1/app). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://localhost:5001/hackproject-27248/us-central1/app)."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://localhost:4000                │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ localhost:5001 │ http://localhost:4000/functions │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Hosting   │ localhost:6000 │ n/a                             │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at localhost:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2022-10-08T15:42:11.416Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-10-08T15:42:11.416Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-10-08T15:42:11.417Z] Accepted request POST /hackproject-27248/us-central1/app/calculate-price --> us-central1-app
+[debug] [2022-10-08T15:42:11.421Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-10-08T15:42:11.422Z] [functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price"}}
+[debug] [2022-10-08T15:42:11.431Z] [worker-pool] addWorker(us-central1-app) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(us-central1-app)"}}
+[debug] [2022-10-08T15:42:11.431Z] [worker-pool] Adding worker with key us-central1-app, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-app, total=1"}}
+[debug] [2022-10-08T15:42:11.875Z] [runtime-status] [36913] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.2.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"10.2.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.875Z] [runtime-status] [36913] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.875Z] [runtime-status] [36913] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}] {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Outgoing network have been stubbed. [{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"http\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"https\",\"status\":\"mocked\"},{\"name\":\"net\",\"status\":\"mocked\"}]"}}
+[debug] [2022-10-08T15:42:11.875Z] [runtime-status] [36913] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.888Z] [runtime-status] [36913] Checked functions.config() {"config":{}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Checked functions.config() {\"config\":{}}"}}
+[debug] [2022-10-08T15:42:11.888Z] [runtime-status] [36913] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.18.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] firebase-functions has been stubbed. {\"functionsResolution\":{\"declared\":true,\"installed\":true,\"version\":\"3.18.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js\"}}"}}
+[debug] [2022-10-08T15:42:11.888Z] [runtime-status] [36913] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.889Z] [runtime-status] [36913] Resolved module firebase-admin {"declared":true,"installed":true,"version":"10.2.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-admin {\"declared\":true,\"installed\":true,\"version\":\"10.2.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.889Z] [runtime-status] [36913] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.18.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Resolved module firebase-functions {\"declared\":true,\"installed\":true,\"version\":\"3.18.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-functions/lib/index.js\"}"}}
+[debug] [2022-10-08T15:42:11.889Z] [runtime-status] [36913] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"10.2.0","resolution":"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js"}} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] firebase-admin has been stubbed. {\"adminResolution\":{\"declared\":true,\"installed\":true,\"version\":\"10.2.0\",\"resolution\":\"/Users/niki/Desktop/smth/functions/node_modules/firebase-admin/lib/index.js\"}}"}}
+[debug] [2022-10-08T15:42:11.931Z] [runtime-status] [36913] initializeApp(DEFAULT) {"storageBucket":"hackproject-27248.appspot.com","projectId":"hackproject-27248"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] initializeApp(DEFAULT) {\"storageBucket\":\"hackproject-27248.appspot.com\",\"projectId\":\"hackproject-27248\"}"}}
+[debug] [2022-10-08T15:42:11.933Z] [runtime-status] [36913] Functions runtime initialized. {"cwd":"/Users/niki/Desktop/smth/functions","node_version":"16.17.1"} {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Functions runtime initialized. {\"cwd\":\"/Users/niki/Desktop/smth/functions\",\"node_version\":\"16.17.1\"}"}}
+[debug] [2022-10-08T15:42:11.934Z] [runtime-status] [36913] Listening to port: /var/folders/6y/dyrrb03562v018q6d8fq0r_r0000gn/T/fire_emu_b91911daf15249a0.sock {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"[runtime-status] [36913] Listening to port: /var/folders/6y/dyrrb03562v018q6d8fq0r_r0000gn/T/fire_emu_b91911daf15249a0.sock"}}
+[debug] [2022-10-08T15:42:11.947Z] [worker-pool] submitRequest(triggerId=us-central1-app) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-app)"}}
+[debug] [2022-10-08T15:42:11.947Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY"}}
+[info] i  functions: Beginning execution of "app" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Beginning execution of \"app\""}}
+[warn] ⚠  External network resource requested!
+   - URL: "https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=473.7965&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013"
+ - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"External network resource requested!\n   - URL: \"https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=473.7965&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013\"\n - Be careful, this may be a production service."}}
+[debug] [2022-10-08T15:42:12.342Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE"}}
+[debug] [2022-10-08T15:42:12.342Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "app" in 388.064041ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Finished \"app\" in 388.064041ms"}}
+[debug] [2022-10-08T15:42:57.636Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-10-08T15:42:57.644Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-10-08T15:42:57.644Z] Accepted request POST /hackproject-27248/us-central1/app/calculate-price --> us-central1-app
+[debug] [2022-10-08T15:42:57.656Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-10-08T15:42:57.657Z] [functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price"}}
+[debug] [2022-10-08T15:42:57.658Z] [worker-pool] submitRequest(triggerId=us-central1-app) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-app)"}}
+[debug] [2022-10-08T15:42:57.658Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY"}}
+[info] i  functions: Beginning execution of "app" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Beginning execution of \"app\""}}
+[warn] ⚠  External network resource requested!
+   - URL: "https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=12.13&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013"
+ - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"External network resource requested!\n   - URL: \"https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=12.13&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013\"\n - Be careful, this may be a production service."}}
+[debug] [2022-10-08T15:42:58.074Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE"}}
+[debug] [2022-10-08T15:42:58.074Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "app" in 376.37075ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Finished \"app\" in 376.37075ms"}}
+[debug] [2022-10-08T15:43:11.523Z] [work-queue] {"queueLength":1,"workRunningCount":0}
+[debug] [2022-10-08T15:43:11.527Z] [work-queue] {"queueLength":0,"workRunningCount":1}
+[debug] [2022-10-08T15:43:11.528Z] Accepted request POST /hackproject-27248/us-central1/app/calculate-price --> us-central1-app
+[debug] [2022-10-08T15:43:11.533Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2022-10-08T15:43:11.534Z] [functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/hackproject-27248/us-central1/app/calculate-price, mapping to path=/calculate-price"}}
+[debug] [2022-10-08T15:43:11.534Z] [worker-pool] submitRequest(triggerId=us-central1-app) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-app)"}}
+[debug] [2022-10-08T15:43:11.534Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: BUSY"}}
+[info] i  functions: Beginning execution of "app" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Beginning execution of \"app\""}}
+[warn] ⚠  External network resource requested!
+   - URL: "https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=12.319&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013"
+ - Be careful, this may be a production service. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"External network resource requested!\n   - URL: \"https://api2.myauto.ge/ka/products?TypeID=0&ForRent=0&Mans=12.319&Cats=1&CurrencyID=1&MileageType=1&SortOrder=1&Page=1&MileageFrom=50123&MileageTo=90123&ProdYearFrom=2013&ProdYearTo=2013\"\n - Be careful, this may be a production service."}}
+[debug] [2022-10-08T15:43:13.125Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: IDLE"}}
+[debug] [2022-10-08T15:43:13.125Z] [work-queue] {"queueLength":0,"workRunningCount":0}
+[info] i  functions: Finished "app" in 1585.233958ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-app"},"extension":{},"message":"Finished \"app\" in 1585.233958ms"}}
+[debug] [2022-10-08T16:27:53.643Z] File /Users/niki/Desktop/smth/functions/routes/calculatePrice.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/niki/Desktop/smth/functions/routes/calculatePrice.js changed, reloading triggers"}}
+[debug] [2022-10-08T16:27:54.678Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-10-08T16:27:58.832Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "firebase-functions": "^3.18.0",
+    "googleapis": "^108.0.0",
+    "handlebars": "^4.7.7",
+    "nodemailer": "^6.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-10-08T16:27:58.832Z] Building nodejs source
+[debug] [2022-10-08T16:27:58.832Z] Analyzing nodejs backend spec
+[warn] ⚠  functions: You are using an old version of firebase-functions SDK (3.18.0). Please update firebase-functions SDK to >=3.20.0 
+[info] ✔  functions: Loaded functions definitions from source: app. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: app."}}
+[debug] [2022-10-08T16:27:59.008Z] [worker-pool] Shutting down IDLE worker (us-central1-app) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Shutting down IDLE worker (us-central1-app)"}}
+[debug] [2022-10-08T16:27:59.008Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: FINISHING {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: FINISHING"}}
+[debug] [2022-10-08T16:27:59.011Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: exited {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: exited"}}
+[debug] [2022-10-08T16:27:59.011Z] [worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: FINISHED {"metadata":{"emulator":{"name":"functions"},"message":"[worker-us-central1-app-667c3115-37e3-434a-8e9f-6287ca53280a]: FINISHED"}}
+[debug] [2022-10-08T16:31:24.027Z] File /Users/niki/Desktop/smth/functions/routes/calculatePrice.js changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/niki/Desktop/smth/functions/routes/calculatePrice.js changed, reloading triggers"}}
+[debug] [2022-10-08T16:31:25.032Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2022-10-08T16:31:25.906Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "firebase-functions": "^3.18.0",
+    "googleapis": "^108.0.0",
+    "handlebars": "^4.7.7",
+    "nodemailer": "^6.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2022-10-08T16:31:25.906Z] Building nodejs source
+[debug] [2022-10-08T16:31:25.906Z] Analyzing nodejs backend spec
+[warn] ⚠  functions: You are using an old version of firebase-functions SDK (3.18.0). Please update firebase-functions SDK to >=3.20.0 
+[info] ✔  functions: Loaded functions definitions from source: app. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: app."}}
