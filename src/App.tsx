@@ -8,9 +8,6 @@ import { auth } from './utils/firebase';
 import { NotificationsProvider } from '@mantine/notifications';
 import AnimatedRoutes from './components/AnimatedRoutes';
 import { MantineProvider } from '@mantine/styles';
-import api from './api';
-import { authCompany } from './state/company';
-import { UserRoles } from './interfaces';
 
 function App() {
   return (

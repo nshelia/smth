@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Landing from '../../scenes/Landing';
+import ReviewPage from '../../scenes/ReviewPage'
 import { Container } from '@mantine/core';
 
 function AnimatedRoutes() {
@@ -19,7 +20,8 @@ function AnimatedRoutes() {
           classNames={'fade'}
           timeout={300}>
           <Routes location={location}>
-            <Route path="/landing" element={<Landing />} />
+            <Route path="/review/:documentId" element={<ReviewPage />} />
+            <Route path="/" element={<Landing />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

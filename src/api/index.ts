@@ -1,64 +1,18 @@
 // @ts-nocheck
 
 import { db } from '../utils/firebase';
-import { doc, getDoc, writeBatch } from 'firebase/firestore';
-import { User } from '../interfaces/index';
-import {
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
-import { auth } from '../utils/firebase';
-import axios, { AxiosInstance } from 'axios';
-const isDev = process.env.NODE_ENV === 'development';
-const baseURL = isDev ? 'dev url' : 'produrl';
+import {  setDoc, doc, getDoc } from 'firebase/firestore';
+import axios from 'axios';
+
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 
 class FirebaseApi {
-  firebaseIdToken?: string;
-  apiClient: AxiosInstance = axios.create({});
 
-  constructor() {
-    onAuthStateChanged(auth, async (user) => {
-      const token = await user?.getIdToken();
-      this.firebaseIdToken = token;
-
-      this.apiClient = axios.create({
-        baseURL: baseURL,
-        headers: {
-          Authorization: 'Bearer ' + this.firebaseIdToken,
-        },
-      });
-    });
-  }
-
-  getUser = async (uid: string): Promise<User | null> => {
-    const snap = await getDoc(doc(db, 'users', uid));
-    if (snap.exists()) {
-      return { uid, ...snap.data() } as User;
-    }
-    return null;
-  };
-
-  createUser = async (userId: string, data: any) => {
-    const batch = writeBatch(db);
-
-    const userRef = doc(db, 'users', userId);
-    batch.set(userRef, data);
-
-    await batch.commit();
-  };
-
-  createAccount = async (email: string, password: string, data: any) => {
-    // Firebase User entity creation for authorization
-    const userCredentials = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-    );
-
-    const userId = userCredentials.user.uid;
-    // Firebase Database user entity creation for metadata
-    await this.createUser(userId, data);
-    return { userId };
+  createRequest = async (id, data: any) => {
+    await setDoc(doc(db, "requests", id), data);
   };
 
   fetchMain = async () => {
@@ -70,6 +24,29 @@ class FirebaseApi {
       label: item.man_name,
     }));
   };
+
+  calculatePrice = async () => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        return resolve({
+          from: randomIntFromInterval(20000,25000),
+          to: randomIntFromInterval(27000,28000)
+        })
+      },1500)
+    })
+  }
+
+  getRequest = async (id) => {
+    const snap = await getDoc(doc(db, 'requests', id));
+    if (snap.exists()) {
+      return snap.data() as InviteInfo;
+    }
+    return null;
+  }
+
+  revisionForPhotos = async (id, declinedData) => {
+
+  }
 }
 
 export default new FirebaseApi();

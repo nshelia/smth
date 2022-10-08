@@ -10,45 +10,46 @@ import { userImagesRef } from '../../utils/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
 function useImageUpload() {
-  const [selectedImage, setSelectedImage] = useState();
-  const [preview, setPreview] = useState('');
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [previews, setPreviews] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
-  const [imageUrl, setImageUrl] = useState('');
   const [failed, setFailed] = useState(false);
-
+  const [imageUrls,setImageUrls] = useState<string[]>([])
   const uploadedRef = useRef<StorageReference>();
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
-    if (!selectedImage) {
-      setPreview('');
+    if (!selectedImages) {
+      setPreviews([]);
       return;
     }
+    if (selectedImages.length) {
+      const allPreviews = selectedImages.map(item => {
+        const objectUrl = URL.createObjectURL(item);
+        return objectUrl
+      })
+      setPreviews(allPreviews);
+    }
 
-    const objectUrl = URL.createObjectURL(selectedImage);
-    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedImage]);
+  }, [selectedImages]);
 
-  const onSelectImage = (files: any) => {
+  const onSelectImages = async (files: any) => {
     if (!files || files.length === 0) {
-      setSelectedImage(undefined);
+      setSelectedImages([]);
       return;
     }
     setFailed(false);
+    const realImages: string[] = []
+    await Promise.all(files.map((item: any) => {
+      const fileRef = ref(userImagesRef, 'image-' + uuidv4());
 
-    const fileRef = ref(userImagesRef, 'image-' + uuidv4());
-    // 'file' comes from the Blob or File API
-    setUploading(true);
-
-    uploadBytes(fileRef, files[0])
+      return uploadBytes(fileRef, item)
       .then((snapshot) => {
         return getDownloadURL(snapshot.ref);
       })
-      .then((downloadURL) => {
-        uploadedRef.current = fileRef;
-        setImageUrl(downloadURL);
+      .then((downloadURL: string) => {
+        realImages.push(downloadURL)
         setUploading(false);
       })
       .catch((e) => {
@@ -56,12 +57,17 @@ function useImageUpload() {
         setUploading(false);
       });
 
-    setSelectedImage(files[0]);
+    }))
+
+    setImageUrls(realImages)
+
+    setSelectedImages(files)
+
   };
 
-  const resetImage = async () => {
+  const resetImage = async (image: any) => {
     setFailed(false);
-    setSelectedImage(undefined);
+    setPreviews(previews.filter(blob => blob !== image));
     if (!uploading && uploadedRef.current) {
       await deleteObject(uploadedRef.current);
     }
@@ -69,13 +75,13 @@ function useImageUpload() {
 
   return {
     failed,
-    imageUrl,
     uploading,
     resetImage,
-    onSelectImage,
-    setSelectedImage,
-    selectedImage,
-    preview,
+    onSelectImages,
+    setSelectedImages,
+    selectedImages,
+    previews,
+    imageUrls
   };
 }
 
