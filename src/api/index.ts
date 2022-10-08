@@ -13,7 +13,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const baseURL = isDev
   ? 'http://localhost:5001/hackproject-27248/us-central1/app'
-  : 'https://greetle.app/api';
+  : 'https://us-central1-hackproject-27248.cloudfunctions.net/app';
 
 
 class FirebaseApi {

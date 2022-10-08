@@ -1,20 +1,23 @@
-async function sendMail(req, res) {
-    // THIS IS EMAIL OF EXPERT
-    const dest = 'nshprimary@gmail.com';
-    const documentId = req.body.documentId;
-    const make = req.body.make;
+const { sendMail, generateTemplate } = require('../utils/email');
 
-    const firestore = admin.firestore();
+async function sendMailFunc(req, res) {
+  // THIS IS EMAIL OF EXPERT
+  const dest = 'nshprimary@gmail.com';
+  const documentId = req.body.documentId;
+  const make = req.body.make;
 
-    const doc = await firestore.collection('requests').doc(documentId).get();
-    if (!doc.exists) {
-        res.send('No such document!');
-        return;
-    }
+  const firestore = admin.firestore();
 
-    const mailOptions = await generateTemplate(dest, make, documentId);
-    const messageId = await sendMail(mailOptions);
-    return res.status(200).send(messageId);
+  const doc = await firestore.collection('requests').doc(documentId).get();
+  if (!doc.exists) {
+    res.send('No such document!');
+    return;
+  }
+  const mailOptions = await generateTemplate(dest, make, documentId);
+  console.log('came here', dest, make, mailOptions);
+
+  const messageId = await sendMail(mailOptions);
+  return res.status(200).send(messageId);
 }
 
-module.exports = sendMail;
+module.exports = sendMailFunc;

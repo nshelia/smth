@@ -10,21 +10,50 @@ const {
   generateTemplateForDeclined,
   generateTemplateForAccept,
 } = require('./utils/email');
-const sendMailHandler = require('./routes/sendDeclineMail');
-const sendDeclineHandler = require('./routes/sendDeclineMail');
-const sendAcceptHandler = require('./routes/sendAcceptMail');
-const calculatePriceHandler = require('./routes/calculatePrice');
+
 admin.initializeApp();
 
 app.use(cors);
 app.use(cookieParser);
 
-app.post('/send-email', sendMailHandler);
+app.post('/send-email', async (req, res) => {
+  // THIS IS EMAIL OF EXPERT
+  const dest = 'nshprimary@gmail.com';
+  const documentId = req.body.documentId;
+  const make = req.body.make;
 
-app.post('/send-decline-email', sendDeclineHandler);
+  const firestore = admin.firestore();
 
-app.post('/send-accept-email', sendAcceptHandler);
+  const doc = await firestore.collection('requests').doc(documentId).get();
+  if (!doc.exists) {
+    res.send('No such document!');
+    return;
+  }
 
-app.post('/calculate-price', calculatePriceHandler)
+  const mailOptions = await generateTemplate(dest, make, documentId);
+  const messageId = await sendMail(mailOptions);
+  return res.status(200).send(messageId);
+});
+
+app.post('/send-decline-email', async (req, res) => {
+  const dest = req.body.email;
+  const make = req.body.make;
+  const comments = req.body.comments;
+  const declinedImages = req.body.declinedImages;
+  const mailOptions = await generateTemplateForDeclined(dest, make, comments);
+
+  const messageId = await sendMail(mailOptions);
+  return res.status(200).send(messageId);
+});
+
+app.post('/send-accept-email', async (req, res) => {
+  const dest = req.body.email;
+  const make = req.body.make;
+  const finalPrice = req.body.finalPrice;
+  const mailOptions = await generateTemplateForAccept(dest, make, finalPrice);
+
+  const messageId = await sendMail(mailOptions);
+  return res.status(200).send(messageId);
+});
 
 exports.app = functions.https.onRequest(app);

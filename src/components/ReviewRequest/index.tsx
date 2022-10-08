@@ -99,6 +99,7 @@ function ReviewRequest() {
             selectedModel: null,
             year: 2022,
             grade: 'grade5',
+            fuelType: null,
             milage: null
         },
 
@@ -122,6 +123,8 @@ function ReviewRequest() {
             onError: () => { },
         },
     );
+
+    console.log(mutation)
 
     let transformedModels = useMemo(() => realModels.filter(
         (item) => item.manId === parseInt(form.values.selectedMan),
@@ -167,7 +170,7 @@ function ReviewRequest() {
         })
     }
 
-    const notValidated = !form.values.selectedModel || !form.values.selectedMan || !form.values.year || !form.values.email || !previews.length
+    const notValidated = !form.values.selectedModel || !form.values.selectedMan || !form.values.year || !form.values.email || !previews.length || !form.values.fuelType
 
     return (
         <main style={{ marginTop: '50px' }}>
@@ -228,6 +231,31 @@ function ReviewRequest() {
                                 />
                             </Grid.Col>
                         </Grid>
+                        <Select
+                            required
+                            style={{ marginTop: '10px' }}
+                            transition="pop-top-left"
+                            transitionDuration={80}
+                            transitionTimingFunction="ease"
+                            onChange={(data) => form.setFieldValue("fuelType", data)}
+                            value={form.values.fuelType}
+                            placeholder="Select fuel type"
+                            label="Choose fuel type"
+                            data={[
+                                {
+                                    value: 6,
+                                    label: "Hybrid"
+                                },
+                                {
+                                    value: 2,
+                                    label: "Gasoline"
+                                },
+                                {
+                                    value: 3,
+                                    label: "Diesel"
+                                }
+                            ]}
+                        />
                         <TextInput
                             required
                             style={{ marginTop: '10px' }}

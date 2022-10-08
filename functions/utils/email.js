@@ -80,7 +80,7 @@ const generateTemplateForAccept = (dest, carMake, finalPrice) => {
       resolve({
         from: 'CarReviewService <nshprimary@gmail.com>',
         to: dest,
-        subject: 'Your request for' + carMake + ' has been accepted',
+        subject: 'Your request for ' + carMake + ' has been accepted',
         html: htmlToSend,
       });
     });
