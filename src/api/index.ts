@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { db } from '../utils/firebase';
-import {  setDoc, doc, getDoc } from 'firebase/firestore';
+import {  setDoc, doc, updateDoc, getDoc } from 'firebase/firestore';
 import axios from 'axios';
 
 function randomIntFromInterval(min, max) { // min and max included 
@@ -73,6 +73,22 @@ class FirebaseApi {
 
   sendAcceptEmail = async (data) => {
     return this.apiClient.post('/send-accept-email', data);
+  }
+
+  updateRequest = async (id, state) => {
+    const requestDocRef = doc(db, "requests", id);
+
+    await updateDoc(requestDocRef, {
+      state
+    });
+  }
+
+  getRequestList = async (ids = []) => {
+    const data = await Promise.all(ids.map(item => {
+      return this.getRequest(item)
+    }))
+
+    return data.reverse()
   }
 }
 

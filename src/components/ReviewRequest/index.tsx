@@ -9,20 +9,22 @@ import {
     SegmentedControl,
     Group,
     Loader,
+    ThemeIcon,
     Grid,
     Button,
 } from '@mantine/core';
 import { useQuery, useMutation } from 'react-query';
 import api from '../../api';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import models from './models.json';
 import { TextInput } from '@mantine/core';
 import Message from '../../components/Message';
 import { gradeToInfo } from '../../helpers/gradeToInfo';
 import {
+    Plus,
     X,
     FileAlert,
-    Check
+    Check,
 } from 'tabler-icons-react';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import useImageUpload from './useImageUpload';
@@ -30,6 +32,8 @@ import Dialog from '../../components/Dialog'
 import { v4 as uuidv4 } from 'uuid';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
+import { saveState, loadState } from '../../helpers/persist';
+import notificationPath from '../../notification.mp3'
 
 const years = [
     {
@@ -83,7 +87,11 @@ const realModels = models.map((item) => ({
 function ReviewRequest() {
     const { onSelectImages, previews, imageUrls, resetImage, uploading, failed } =
         useImageUpload();
+    const openRef = useRef<() => void>(null);
+
     const [isDialogOpen, setOpenDialog] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     const form = useForm<FormValues>({
         initialValues: {
             email: '',
@@ -108,6 +116,8 @@ function ReviewRequest() {
         {
             onSuccess: () => {
                 setOpenDialog(true)
+                var audio = new Audio(notificationPath);
+                audio.play();
             },
             onError: () => { },
         },
@@ -129,19 +139,25 @@ function ReviewRequest() {
 
     const handleSubmit = () => {
         const requestId = uuidv4()
+        setIsSubmitting(true)
         api.createRequest(requestId, {
+            id: requestId,
             email: form.values.email,
             imageUrls,
             make: manufacturers.find(item => item.value === form.values.selectedMan) || {},
             model: transformedModels.find(item => item.value === form.values.selectedModel) || {},
             year: form.values.year || 2022,
             grade: form.values.grade,
-            priceRange: mutation.data
+            priceRange: mutation.data,
+            createdDate: new Date().toUTCString()
         }).then(() => {
+            setIsSubmitting(false)
             const make = manufacturers.find(item => item.value === form.values.selectedMan) || {}
 
             api.sendDocument(requestId, make.label)
-
+            api.updateRequest(requestId, "pending")
+            const curRequests = loadState("request-ids") || []
+            saveState([...curRequests, requestId], "request-ids")
             setOpenDialog(false)
             showNotification({
                 color: 'teal',
@@ -235,7 +251,8 @@ function ReviewRequest() {
                             />
                         </div>
                         <Message text={gradeToInfo[form.values.grade]} />
-                        {previews.length ? (
+
+                        {previews.length !== 0 && (
                             <div className="flex">
                                 {previews.map(item => <div
                                     className="w-32 h-32 mr-2 image-wrapper items-center flex justify-center"
@@ -245,43 +262,42 @@ function ReviewRequest() {
                                             <FileAlert color="red" size="40" />
                                         </div>
                                     )}
-                                    {uploading ? (
-                                        <div className="w-32 h-32  opacity-50 bg-black overflow-hidden rounded-full z-10 absolute flex items-center justify-center cursor-pointer">
-                                            <Loader color="green" />
-                                        </div>
-                                    ) : (
-                                        <div className="w-20 h-20 opacity-0 hover:opacity-50 bg-black overflow-hidden rounded-full z-10 absolute flex items-center justify-center cursor-pointer">
-                                            <X color="white" size="40" />
-                                        </div>
-                                    )}
+                                    <div className="w-20 h-20 opacity-0 hover:opacity-50 bg-black overflow-hidden rounded-full z-10 absolute flex items-center justify-center cursor-pointer">
+                                        <X color="white" size="40" />
+                                    </div>
                                     <img
                                         alt="profile-pic"
                                         src={item}
                                         className="w-32 h-32 object-cover rounded-md"
                                     />
                                 </div>)}
-                            </div>
-                        ) : (
-                            <Dropzone onDrop={onSelectImages} accept={IMAGE_MIME_TYPE}>
-                                <Group
-                                    position="center"
-                                    spacing="xl"
-                                    style={{ minHeight: 50, pointerEvents: 'none' }}>
-
-                                    <Dropzone.Idle>
-                                        {/* <ImageUploadIcon size={50} stroke={1.5} /> */}
-                                    </Dropzone.Idle>
-                                    <div>
-                                        <Text size="xl" inline>
-                                            Click here to add car photos 🏎️
-                                        </Text>
-                                        <Text size="sm" color="dimmed" inline mt={7}>
-                                            Attach as many files as you like, each file should not exceed 5mb
-                                        </Text>
+                                <div className="w-32 h-32 mr-2 image-wrapper items-center flex justify-center" onClick={() => openRef.current()}>
+                                    <div className="w-20 h-20 opacity-1 bg-blue-300 hover:bg-blue-500 overflow-hidden rounded-full z-10 absolute flex items-center justify-center cursor-pointer">
+                                        <Plus color="white" size="40" />
                                     </div>
-                                </Group>
-                            </Dropzone>
+                                </div>
+                            </div>
+
                         )}
+                        {previews.length === 0 && <Dropzone onDrop={onSelectImages} accept={IMAGE_MIME_TYPE} loading={uploading} openRef={openRef}>
+                            <Group
+                                position="center"
+                                spacing="xl"
+                                style={{ minHeight: 50, pointerEvents: 'none' }}>
+
+                                <Dropzone.Idle>
+                                    {/* <ImageUploadIcon size={50} stroke={1.5} /> */}
+                                </Dropzone.Idle>
+                                <div>
+                                    <Text size="xl" inline>
+                                        Click here to add car photos 🏎️
+                                    </Text>
+                                    <Text size="sm" color="dimmed" inline mt={7}>
+                                        Attach as many files as you like, each file should not exceed 5mb
+                                    </Text>
+                                </div>
+                            </Group>
+                        </Dropzone>}
                         <div className="mt-2">
                             <Button
                                 disabled={notValidated}
@@ -297,7 +313,7 @@ function ReviewRequest() {
                 </Paper>
 
             </Container>
-            <Dialog isOpen={isDialogOpen} data={mutation.data} onClose={() => setOpenDialog(false)} onSubmit={handleSubmit} />
+            <Dialog loading={isSubmitting} isOpen={isDialogOpen} data={mutation.data} onClose={() => setOpenDialog(false)} onSubmit={handleSubmit} />
         </main >
     );
 }

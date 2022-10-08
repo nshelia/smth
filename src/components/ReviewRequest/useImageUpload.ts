@@ -36,11 +36,13 @@ function useImageUpload() {
 
   const onSelectImages = async (files: any) => {
     if (!files || files.length === 0) {
-      setSelectedImages([]);
+      setSelectedImages(selectedImages || []);
       return;
     }
     setFailed(false);
     const realImages: string[] = []
+    setUploading(true);
+
     await Promise.all(files.map((item: any) => {
       const fileRef = ref(userImagesRef, 'image-' + uuidv4());
 
@@ -56,12 +58,13 @@ function useImageUpload() {
         setFailed(true);
         setUploading(false);
       });
-
     }))
 
-    setImageUrls(realImages)
+    setUploading(false);
 
-    setSelectedImages(files)
+    setImageUrls([...imageUrls,...realImages])
+
+    setSelectedImages([...selectedImages,...files] as any)
 
   };
 

@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Button, Text } from '@mantine/core'
 
-export default function MyModal({ isOpen, onSubmit, data, onClose }: { isOpen: boolean, onSubmit: () => void, onClose: () => void, data: any }) {
+export default function MyModal({ isOpen, onSubmit, data, loading, onClose }: { isOpen: boolean, loading: boolean, onSubmit: () => void, onClose: () => void, data: any }) {
 
     return (
         <>
@@ -46,6 +46,7 @@ export default function MyModal({ isOpen, onSubmit, data, onClose }: { isOpen: b
                                     {data && <Text color="teal" style={{ textAlign: "center", margin: "10px 0px", fontSize: "36px" }}>${data.from} - ${data.to}</Text>}
                                     <div className="flex">
                                         <Button
+                                            loading={loading}
                                             onClick={onSubmit}
                                             style={{ marginRight: "10px" }}
                                             fullWidth

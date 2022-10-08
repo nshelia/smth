@@ -23,6 +23,8 @@ import { showNotification } from '@mantine/notifications';
 import {
     Check
 } from 'tabler-icons-react';
+//@ts-ignore
+import notificationPath from '../../notification.mp3'
 
 function InviteLink() {
     const { documentId } = useParams();
@@ -36,7 +38,6 @@ function InviteLink() {
             comments: '',
             finalPrice: 0
         },
-
         validate: {},
     });
 
@@ -57,6 +58,12 @@ function InviteLink() {
         },
         {
             onSuccess: () => {
+                api.updateRequest(data.id, "rejected")
+                showNotification({
+                    color: 'teal',
+                    icon: <Check />,
+                    message: 'Decline message has been sent!',
+                });
             },
             onError: () => { },
         },
@@ -75,6 +82,9 @@ function InviteLink() {
         },
         {
             onSuccess: () => {
+                api.updateRequest(data.id, "accepted")
+                var audio = new Audio(notificationPath);
+                audio.play();
                 showNotification({
                     color: 'teal',
                     icon: <Check />,
