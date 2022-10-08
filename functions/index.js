@@ -10,6 +10,7 @@ const {
   generateTemplateForDeclined,
   generateTemplateForAccept,
 } = require('./utils/email');
+const calculatePrice = require('./routes/calculatePrice');
 
 admin.initializeApp();
 
@@ -55,5 +56,7 @@ app.post('/send-accept-email', async (req, res) => {
   const messageId = await sendMail(mailOptions);
   return res.status(200).send(messageId);
 });
+
+app.post('/calculate-price', calculatePrice);
 
 exports.app = functions.https.onRequest(app);
