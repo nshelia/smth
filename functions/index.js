@@ -18,7 +18,6 @@ app.use(cors);
 app.use(cookieParser);
 
 app.post('/send-email', async (req, res) => {
-  // THIS IS EMAIL OF EXPERT
   const dest = 'nshprimary@gmail.com';
   const documentId = req.body.documentId;
   const make = req.body.make;

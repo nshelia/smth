@@ -88,7 +88,7 @@ class FirebaseApi {
       return this.getRequest(item)
     }))
 
-    return data.reverse()
+    return data.filter(Boolean).reverse()
   }
 }
 

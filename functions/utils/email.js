@@ -60,7 +60,7 @@ const generateTemplateForDeclined = (dest, carMake, comments) => {
       resolve({
         from: 'CarReviewService <nshprimary@gmail.com>',
         to: dest,
-        subject: 'Your request for' + carMake + ' has been declined',
+        subject: 'Your request for ' + carMake + ' has been declined',
         html: htmlToSend,
       });
     });

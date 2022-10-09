@@ -616,6 +616,9 @@
           text-decoration: none !important;
         }
       }
+      .comment {
+        color: red
+      }
     </style>
   </head>
   <body class="">
@@ -638,12 +641,12 @@
                     <tr>
                       <td>
                         <h1>Car review for {{carMake}}</h1>
-                        <h4>
+                        <h3>
                          Your request has been declined, see comments below
-                        </h4>
-                        <h4>
+                        </h3>
+                        <p class="comment">
                           {{comments}}
-                        </h4>
+                        </p>
                       </td>
                     </tr>
                   </table>
