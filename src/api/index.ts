@@ -36,15 +36,15 @@ class FirebaseApi {
     }));
   };
 
-  calculatePrice = async () => {
-    return new Promise((resolve,reject) => {
-      setTimeout(() => {
-        return resolve({
-          from: randomIntFromInterval(20000,25000),
-          to: randomIntFromInterval(27000,28000)
-        })
-      },1500)
-    })
+  calculatePrice = async (values) => {
+    const { data } = await this.apiClient.post('/calculate-price', {
+      make: values.selectedMan,
+      model: values.selectedModel,
+      year: values.year,
+      kilometers: values.milage,
+      fuelType: values.fuelType
+    });
+    return data
   }
 
   getRequest = async (id) => {

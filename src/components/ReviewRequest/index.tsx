@@ -178,7 +178,7 @@ function ReviewRequest() {
                 <Paper shadow="xs" p="md">
                     <form onSubmit={handleFormSubmit()}>
                         <Title order={1} style={{ marginBottom: '10px' }}>
-                            Car details
+                            Enter car details 🚘
                         </Title>
                         <Select
                             required
@@ -281,9 +281,9 @@ function ReviewRequest() {
                         <Message text={gradeToInfo[form.values.grade]} />
 
                         {previews.length !== 0 && (
-                            <div className="flex">
+                            <div className="flex flex-wrap">
                                 {previews.map(item => <div
-                                    className="w-32 h-32 mr-2 image-wrapper items-center flex justify-center"
+                                    className="w-32 h-32 mr-2 mb-3 image-wrapper items-center flex justify-center"
                                     onClick={() => resetImage(item)}>
                                     {failed && (
                                         <div className="w-32 h-32 opacity-50 bg-black overflow-hidden rounded-full z-10 absolute flex items-center justify-center cursor-pointer image-error">

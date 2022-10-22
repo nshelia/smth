@@ -109,7 +109,7 @@ function InviteLink() {
         <Box sx={{ maxWidth: 600 }} mx="auto" mt="lg">
             <Paper shadow="xs" p="md">
                 <Title mb="lg">
-                    {"Car details"}
+                    {"Enter car details 🏎️"}
                 </Title>
                 <CarDetailBox>
                     <Text weight="bold">
@@ -145,11 +145,11 @@ function InviteLink() {
                 <Title mb="lg">
                     {"Car photos"}
                 </Title>
-                <div className="flex">
+                <div className="flex flex-wrap">
                     {data.imageUrls.map((item: string, index: number) => {
                         const isAccepted = acceptedImages.some(url => url === item)
                         return (
-                            <Card shadow="sm" p="lg" radius="md" style={{ width: "50%", margin: "0px 10px" }} withBorder>
+                            <Card shadow="sm" p="lg" radius="md" style={{ width: "42%", margin: "10px 10px" }} withBorder>
                                 <Card.Section className="hover:opacity-90 cursor-pointer" onClick={() => {
                                     setCurrImg(index)
                                     setIsOpen(true)

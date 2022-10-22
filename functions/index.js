@@ -18,7 +18,7 @@ app.use(cors);
 app.use(cookieParser);
 
 app.post('/send-email', async (req, res) => {
-  const dest = 'nshprimary@gmail.com';
+  const dest = 'nbregv@gmail.com';
   const documentId = req.body.documentId;
   const make = req.body.make;
 
